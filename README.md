@@ -4,7 +4,7 @@ ShadowsocksR-libev for OpenWrt/LEDE
 简介
 ---
 
- 本项目是 [shadowsocksr-libev][1] 在 OpenWrt 上的移植  
+ 本项目是 [shadowsocksr-libev][1] 在 OpenWrt/LEDE 上的移植  
 
 特性
 ---
@@ -31,14 +31,11 @@ ShadowsocksR-libev for OpenWrt/LEDE
    # 以 ar71xx 平台为例
    tar xjf OpenWrt-SDK-ar71xx-for-linux-x86_64-gcc-4.8-linaro_uClibc-0.9.33.2.tar.bz2
    cd OpenWrt-SDK-ar71xx-*
-   # 添加 feeds
-   git clone https://github.com/shadowsocks/openwrt-feeds.git package/feeds
-   # 获取 shadowsocks-libev Makefile
-   git clone https://github.com/shadowsocks/openwrt-shadowsocks.git package/shadowsocks-libev
+   git clone https://github.com/Hill-98/shadowsocksr-libev_openwrt package/shadowsocksr-libev
    # 选择要编译的包 Network -> shadowsocksr-libev
    make menuconfig
    # 开始编译
-   make package/shadowsocks-libev/compile V=99
+   make package/shadowsocksr-libev/compile V=99
    ```
 
 配置
@@ -53,7 +50,7 @@ ShadowsocksR-libev for OpenWrt/LEDE
    local_address  | 字符串   | 本地绑定的 IP 地址, 默认 `127.0.0.1`
    local_port     | 整数值   | 本地绑定的端口号
    password       | 字符串   | 服务端设置的密码
-   method         | 字符串   | 加密方式, [详情参考][E]
+   method         | 字符串   | 加密方式
    timeout        | 整数值   | 超时时间（秒）, 默认 60
    protocol       | 字符串   | 协议, eg: `auth_aes128_sha1`
    protocol_param | 整数值   | 协议参数
@@ -67,7 +64,6 @@ ShadowsocksR-libev for OpenWrt/LEDE
 
   [1]: https://github.com/shadowsocksr/shadowsocksr-libev
   [3]: https://github.com/shadowsocks/luci-app-shadowsocks
-  [E]: https://github.com/shadowsocks/luci-app-shadowsocks/wiki/Encrypt-method
   [F]: https://github.com/shadowsocks/shadowsocks/wiki/TCP-Fast-Open
   [S]: https://wiki.openwrt.org/doc/howto/obtain.firmware.sdk
   [M]: https://www.multipath-tcp.org/
