@@ -37,7 +37,7 @@ ShadowsocksR-libev for OpenWrt/LEDE
    # 开始编译
    make package/shadowsocksr-libev/compile V=99
    ```
-
+ - 可手动修改 Makefile 的 PKG_SOURCE_VERSION 值为 [shadowsocksr-libev][1] 最新的 commit 来编译最新版本
 配置
 ---
 
