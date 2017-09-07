@@ -64,7 +64,7 @@ ShadowsocksR-libev for OpenWrt/LEDE
 
 
   [1]: https://github.com/ToyoDAdoubi/shadowsocksr-libev
-  [3]: https://github.com/shadowsocks/luci-app-shadowsocks
+  [3]: https://github.com/Hill-98/luci-app-shadowsocks
   [F]: https://github.com/shadowsocks/shadowsocks/wiki/TCP-Fast-Open
   [S]: https://wiki.openwrt.org/doc/howto/obtain.firmware.sdk
   [M]: https://www.multipath-tcp.org/
