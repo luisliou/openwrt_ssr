@@ -36,7 +36,50 @@ define Package/$(PKG_NAME)/description
 ShadowsocksR-libev is a lightweight secured socks5 proxy for embedded devices and low end boxes.
 endef
 
-CONFIGURE_ARGS += --disable-ssp --disable-documentation --disable-assert
+define Package/$(PKG_NAME)/postinst
+#!/bin/sh
+cat > /etc/config/shadowsockr << EOF
+{
+    "server":"1.1.1.1",
+    "server_port":8192,
+    "local_address":"0.0.0.0",
+    "local_port":1080,
+    "password": "password",
+    "timeout": 120,
+    "method": "none",
+    "protocol": "auth_chain_a",
+    "protocol_param": "",
+    "obfs": "tls1.2_ticket_auth",
+    "obfs_param": "cloudflare.com"
+}
+EOF
+cat > /etc/init.d/shadowsockr << EOF
+#!/bin/sh /etc/rc.common
+
+START=95
+
+SERVICE_USE_PID=1
+SERVICE_WRITE_PID=1
+SERVICE_DAEMONIZE=1
+
+CONFIG=/etc/config/shadowsocksr
+
+start() {
+#service_start /usr/bin/ss-local -c $CONFIG -b 0.0.0.0
+service_start /usr/bin/ss-redir -c $CONFIG -b 0.0.0.0
+service_start /usr/bin/ss-tunnel -c $CONFIG -b 0.0.0.0 -l      5353 -L 203.98.129.1:53 -u
+}
+
+stop() {
+#service_stop /usr/bin/ss-local
+service_stop /usr/bin/ss-redir
+service_stop /usr/bin/ss-tunnel
+}
+
+EOF
+endef
+
+CONFIGURE_ARGS += --disable-documentation 
 
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/usr/bin
